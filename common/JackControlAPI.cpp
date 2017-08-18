@@ -1347,6 +1347,15 @@ SERVER_EXPORT bool jackctl_server_load_internal(
     }
 }
 
+SERVER_EXPORT bool jackctl_server_is_internal_loaded(
+    jackctl_internal * internal) {
+	if(internal->refnum > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 SERVER_EXPORT bool jackctl_server_unload_internal(
     jackctl_server * server_ptr,
     jackctl_internal * internal)

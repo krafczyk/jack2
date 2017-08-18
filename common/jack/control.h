@@ -243,6 +243,19 @@ jackctl_server_load_internal(
     jackctl_internal_t * internal);
 
 /**
+ * Call this function to check whether an internal is
+ * loaded.
+ * (can be used when the server is running)
+ *
+ * @param internal internal to check
+ *
+ * @return success status: true - loaded, false - not loaded
+ */
+bool
+jackctl_server_is_internal_loaded(
+    jackctl_internal * internal);
+
+/**
  * Call this function to unload one internal client.
  * (can be used when the server is running)
  *

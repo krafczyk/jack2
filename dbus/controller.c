@@ -779,7 +779,7 @@ jack_controller_unload_internals(
     {
         internal = (jackctl_internal_t*) node_ptr->data;
         node_ptr = jack_slist_next(node_ptr);
-        if(internal->refnum != -1) {
+        if(jackctl_server_is_internal_loaded(internal)) {
             if(!jackctl_server_unload_internal(controller_ptr->server, internal)) {
                 return false;
             }
