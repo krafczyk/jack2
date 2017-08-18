@@ -86,20 +86,25 @@ jack_control_run_method(
     }
     else if (strcmp (call->method_name, "StartServer") == 0)
     {
+        jack_info("StartServer Called");
         if (controller_ptr->started)
         {
             jack_info("Ignoring JACK server start request because server is already started.");
         }
         else
         {
+            jack_info("Starting Server");
             if (!jack_controller_start_server(controller_ptr, call))
             {
+                jack_info("Function call failed?");
                 /* the reply is set by the failed function */
                 assert(call->reply != NULL);
                 return true;
             }
 
+            jack_info("Sending start signal");
             jack_controller_control_send_signal_server_started();
+            jack_info("Finished starting!");
         }
     }
     else if (strcmp (call->method_name, "StopServer") == 0)
