@@ -196,6 +196,7 @@ jack_controller_start_server(
 {
     int ret;
 
+    jack_info("test..");
     jack_info("Starting jack server...");
 
     assert(!controller_ptr->started); /* should be ensured by caller */
