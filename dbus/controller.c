@@ -773,7 +773,7 @@ jack_controller_unload_internals(
     const JSList * old_node_ptr;
     jackctl_internal_t* internal;
 
-    node_ptr = jackctl_server_get_internals_list(server);
+    node_ptr = jackctl_server_get_internals_list(controller_ptr->server);
 
     while (node_ptr)
     {
