@@ -290,6 +290,10 @@ jack_controller_stop_server(
 {
     int ret;
 
+    if(!jack_controller_unload_internals(controller_ptr)) {
+        jack_error("Failed to unload loaded internals..");
+    }
+
     pthread_mutex_lock(&controller_ptr->lock);
     if (!list_empty(&controller_ptr->session_pending_commands))
     {
@@ -759,6 +763,29 @@ jack_controller_unload_internal(
     jack_info("internal \"%s\" selected", internal_name);
 
     return jackctl_server_unload_internal(controller_ptr->server, internal);
+}
+
+bool
+jack_controller_unload_internals(
+    struct jack_controller *controller_ptr)
+{
+    const JSList * node_ptr;
+    const JSList * old_node_ptr;
+    jackctrl_internal_t* internal;
+
+    node_ptr = jackctl_server_get_internals_list(server);
+
+    while (node_ptr)
+    {
+        internal = (jackctrl_internal_t*) node_ptr->data;
+        node_ptr = jack_slist_next(node_ptr);
+        if(internal->refnum != -1) {
+            if(!jackctl_server_unload_internal(controller_ptr->server, internal)) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 #define controller_ptr ((struct jack_controller *)context)

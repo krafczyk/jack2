@@ -123,6 +123,10 @@ jack_controller_unload_internal(
     struct jack_controller *controller_ptr,
     const char * internal_name);
 
+bool
+jack_controller_unload_internals(
+    struct jack_controller *controller_ptr);
+
 void
 jack_controller_deserialize_parameter_value(
     struct jack_controller *controller_ptr,
