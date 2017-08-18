@@ -1347,8 +1347,8 @@ SERVER_EXPORT bool jackctl_server_load_internal(
     }
 }
 
-SERVER_EXPORT bool jackctl_server_is_internal_loaded(
-    jackctl_internal_t * internal) {
+SERVER_EXPORT bool jackctl_server_is_internal_loaded(jackctl_internal_t * internal)
+{
 	if(internal->refnum > 0) {
 		return true;
 	} else {
