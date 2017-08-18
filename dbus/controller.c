@@ -771,13 +771,13 @@ jack_controller_unload_internals(
 {
     const JSList * node_ptr;
     const JSList * old_node_ptr;
-    jackctrl_internal_t* internal;
+    jackctl_internal_t* internal;
 
     node_ptr = jackctl_server_get_internals_list(server);
 
     while (node_ptr)
     {
-        internal = (jackctrl_internal_t*) node_ptr->data;
+        internal = (jackctl_internal_t*) node_ptr->data;
         node_ptr = jack_slist_next(node_ptr);
         if(internal->refnum != -1) {
             if(!jackctl_server_unload_internal(controller_ptr->server, internal)) {
