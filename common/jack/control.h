@@ -253,7 +253,7 @@ jackctl_server_load_internal(
  */
 bool
 jackctl_server_is_internal_loaded(
-    jackctl_internal * internal);
+    jackctl_internal_t * internal);
 
 /**
  * Call this function to unload one internal client.
